@@ -1,0 +1,18 @@
+---
+title: "InfoVis Final Project Data Exploration"
+author: "Kylie Lin, Sherry Xue, Annika Nerella, Nawar Alhaddad, Mackenzie Wood"
+output:
+  pdf_document:
+    toc: yes
+---
+
+## Final Project Exploration - Plastic Pollution
+
+```{r}
+# hello! code goes here
+# this doc is combining everything
+# tinytex::install_tinytex()
+
+```
+
+![Image Caption: Cute Dog](Images/cute_dog.jpg)
