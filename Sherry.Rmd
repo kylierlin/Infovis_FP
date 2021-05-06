@@ -1,0 +1,35 @@
+---
+title: "InfoVis Final Project Data Exploration"
+author: "Sherry"
+output:
+  pdf_document:
+    toc: yes
+---
+
+```{r, include=F}
+# uncomment and run this if you have trouble knitting to pdf
+# tinytex::install_tinytex()
+
+```
+
+```{r,include=F, message=F, warning=F}
+# data wrangling
+library(tidyverse)
+library(janitor)
+library(naniar)
+
+# visualizing
+library(ggdist)
+library(gt)
+library(patchwork)
+
+```
+
+## Sherry Data Exploration
+
+```{r}
+# Reading in Data
+
+```
+
+![Image Caption: Cute Dog](Images/cute_dog.jpg)
