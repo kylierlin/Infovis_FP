@@ -4,11 +4,14 @@ author: "Nawar"
 output:
   pdf_document:
     toc: yes
+always_allow_html: true
 ---
 
 ```{r, include=F}
 # uncomment and run this if you have trouble knitting to pdf
 # tinytex::install_tinytex()
+# install.packages("webshot")
+# webshot::install_phantomjs()
 
 ```
 
@@ -17,10 +20,11 @@ output:
 library(tidyverse)
 library(janitor)
 library(naniar)
+library(skimr)
 
 # visualizing
 library(ggdist)
-library(gt)
+library(DT)
 library(patchwork)
 
 ```
@@ -29,7 +33,38 @@ library(patchwork)
 
 ```{r}
 # Reading in Data
+plastics_sector <- read_csv("data/plastic-production-by-sector.csv") %>% 
+  clean_names()
 
 ```
 
 ![Image Caption: Cute Dog](Images/cute_dog.jpg)
+<br>
+
+## Basic Information
+
+```{r}
+plastics_sector %>% 
+  select(-c(code)) %>% 
+  datatable()
+```
+
+
+```{r}
+skim_without_charts(plastics_sector)
+```
+
+
+```{r}
+tibble(
+  Missingness = "No Missingness",
+  `Number of Industries` = 19,
+  Year = "Only 2015",
+ `Production Range` = str_c(min(plastics_sector$primary_plastic_production_million_tonnes), " to ", max(plastics_sector$primary_plastic_production_million_tonnes))
+) %>% 
+  datatable()
+```
+
+
+
+

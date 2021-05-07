@@ -1,17 +1,114 @@
 ---
-title: "InfoVis Final Project Data Exploration"
+title: "InfoVis Final Project Data Exploration • Plastic Pollution"
 author: "Kylie Lin, Sherry Xue, Annika Nerella, Nawar Alhaddad, Mackenzie Wood"
 output:
   pdf_document:
     toc: yes
+always_allow_html: true
 ---
 
-## Final Project Exploration - Plastic Pollution
+## Introduction
 
-```{r}
-# hello! code goes here
-# this doc is combining everything
+```{r, include=F, warning=F, message=F}
+# data wrangling
+library(tidyverse)
+library(janitor)
+library(naniar)
+library(skimr)
+
+# visualizing
+library(ggdist)
+library(DT)
+library(patchwork)
 
 ```
 
-![Image Caption: Cute Dog](Images/cute_dog.jpg)
+
+```{r, include=F, message=F, warning=F}
+# hello! code goes here
+# this doc is combining everything
+sector_polymer <- read_csv("data/plastic-production-by-sector.csv") %>% 
+  clean_names()
+plastics_time <- read_csv("data/global-plastics-production.csv") %>% 
+  clean_names()
+microp_ocean <- read_csv("data/microplastics-in-ocean.csv") %>% 
+  clean_names()
+macrop_ocean <- read_csv("data/macroplastics-in-ocean.csv") %>% 
+  clean_names()
+
+```
+
+Our Final Project is guided by four questions: Where does polluting plastic come from? How much polluting plastic is there in the world and how much has there been over time? Where does the plastic end up eventually? Why should I care; i.e. where does the plastic go in my life? Each of the explored datasets below answers one of these guiding questions (two datasets are used to answer where plastic goes).
+
+## Plastics by Industrial Sector + Polymer Types
+
+```{r, echo=FALSE}
+sector_polymer %>% 
+  select(-code) %>% 
+  datatable()
+```
+
+
+```{r, echo=T, results='hide'}
+skim_without_charts(sector_polymer)
+```
+
+
+```{r, echo=FALSE}
+tibble(
+  Missingness = "No Missingness",
+  `Industry/Polymer Type Count` = 19,
+  Year = "Only 2015",
+ `Production Range` = str_c(min(sector_polymer$primary_plastic_production_million_tonnes), " to ", max(sector_polymer$primary_plastic_production_million_tonnes))
+) %>% 
+  datatable()
+```
+
+
+## Production Over Time
+
+```{r, echo=F}
+plastics_time %>%
+  select(-code) %>% 
+  rename("Production (tonnes)" = global_plastics_production_million_tonnes) %>%
+  datatable()
+
+```
+
+```{r, echo=T, results='hide'}
+skim_without_charts(plastics_time)
+```
+
+
+```{r, echo=FALSE}
+tibble(
+  Missingness = "No Missingness",
+  `Year Range` = str_c(min(plastics_time$year), " to ", max(plastics_time$year)),
+  `Number of Years` = 66,
+  `Plastics Range` = str_c(min(plastics_time$global_plastics_production_million_tonnes), " to ", max(plastics_time$global_plastics_production_million_tonnes)),
+) %>% 
+  datatable()
+```
+
+## Micro and Macro Plastic Pollution in the Ocean
+
+### Macro Plastics
+
+```{r}
+
+```
+
+### Micro Plastics
+
+```{r, echo=FALSE}
+tibble(
+   Missingness = "No Missingness",
+  `Number of Observations` = 303,
+  Year = str_c(min(microp_ocean$year), " to ", max(microp_ocean$year)),
+ `Plastic Count Range` = str_c(0, " to ", 2652700)
+) %>% 
+  datatable()
+
+```
+
+

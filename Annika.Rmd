@@ -4,11 +4,14 @@ author: "Annika"
 output:
   pdf_document:
     toc: yes
+always_allow_html: true
 ---
 
 ```{r, include=F}
 # uncomment and run this if you have trouble knitting to pdf
 # tinytex::install_tinytex()
+# install.packages("webshot")
+# webshot::install_phantomjs()
 
 ```
 
@@ -17,10 +20,11 @@ output:
 library(tidyverse)
 library(janitor)
 library(naniar)
+library(skimr)
 
 # visualizing
 library(ggdist)
-library(gt)
+library(DT)
 library(patchwork)
 
 ```
@@ -29,7 +33,40 @@ library(patchwork)
 
 ```{r}
 # Reading in Data
+plastics_time <- read_csv("data/global-plastics-production.csv") %>% 
+  clean_names()
 
 ```
 
 ![Image Caption: Cute Dog](Images/cute_dog.jpg)
+<br>
+
+## Basic Information
+
+```{r}
+plastics_time %>%
+  rename("Production (tonnes)" = global_plastics_production_million_tonnes) %>%
+  head(5) %>% 
+  gt() %>%
+  tab_header(
+    title = "Plastics Over Time Preview"
+  )
+  
+```
+
+
+```{r, }
+skim_without_charts(plastics_time)
+```
+
+```{r}
+# year span
+tibble(
+  Missingness = "No Missingness",
+  `Number of Years` = 66,
+  `Year Range` = str_c(min(plastics_time$year), " to ", max(plastics_time$year)),
+  `Plastics Range` = str_c(min(plastics_time$global_plastics_production_million_tonnes), " to ", max(plastics_time$global_plastics_production_million_tonnes))
+) %>% 
+  datatable()
+```
+
