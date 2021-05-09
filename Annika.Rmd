@@ -70,3 +70,11 @@ tibble(
   datatable()
 ```
 
+```{r}
+#lineplot of total plastics production over time
+ggplot(plastics_time, aes(year, global_plastics_production_million_tonnes)) + 
+  geom_line() +
+  labs(title= "Plastic Production by Year", x= "Year", y=" Plastic Production (in tonnes)") +
+  scale_x_continuous(n.breaks=10)
+```
+
