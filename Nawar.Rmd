@@ -38,7 +38,7 @@ plastics_sector <- read_csv("data/plastic-production-by-sector.csv") %>%
 
 ```
 
-![Image Caption: Cute Dog](Images/Plastic Production by Sector Exploration.png)
+![Image Caption: Plastic Production by Sector](Images/Plastic Production by Sector Exploration.png)
 <br>
 
 ## Basic Information
