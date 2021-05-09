@@ -12,14 +12,13 @@ always_allow_html: true
 # tinytex::install_tinytex()
 # install.packages("webshot")
 # webshot::install_phantomjs()
-
 ```
 
 ```{r,include=F, message=F, warning=F}
 # data wrangling
 library(tidyverse)
 library(janitor)
-library(naniar)
+#library(naniar)
 library(skimr)
 
 # visualizing
