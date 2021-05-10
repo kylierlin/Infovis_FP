@@ -81,28 +81,116 @@ tibble(
 
 ## Production Over Time
 
-```{r, echo=F}
-plastics_time %>%
-  select(-code) %>% 
-  rename("Production (tonnes)" = global_plastics_production_million_tonnes) %>%
-  datatable()
+```{r, include=F}
+# uncomment and run this if you have trouble knitting to pdf
+# tinytex::install_tinytex()
+# install.packages("webshot")
+# webshot::install_phantomjs()
+```
+
+```{r setup, include=FALSE}
+##knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(readr)
+library(tidyverse)
+# data wrangling
+library(janitor)
+#library(naniar)
+library(skimr)
+
+# visualizing
+library(ggdist)
+library(DT)
+library(patchwork)
 
 ```
 
-```{r, echo=T, results='hide'}
-skim_without_charts(plastics_time)
-```
-
+## Anika Data Exploration
 
 ```{r, echo=FALSE}
+#Load .csv files for relevant datafiles. 
+plastics_type <- read_csv("global-plastics-production.csv") %>% 
+  clean_names()
+population_by_time <- read_csv("WPP2019_TotalPopulationBySex.csv")%>% 
+  clean_names()
+waste2010 <- read_csv("plastic-waste-generation-total.csv") %>% 
+  clean_names()
+
+#Summarize datasets.
+summary(plastics_type)
+summary(population_by_time)
+summary(waste2010)
+
+#Look at top of datasets for adjusting naming convention. 
+head(plastics_type)
+head(population_by_time)
+head(waste2010)
+
+```
+
+```{r}
+#Merge datasets. 
+
+typevspop <- merge(plastics_type, population_by_time, by.x=c("entity", "year"), by.y= c("location", "time"))
+
+waste_bycountry2010 <- merge(waste2010, population_by_time, by.x=c("entity", "year"), by.y= c("location", "time"))
+
+#Generate pctfemale and pctmale. 
+waste_bycountry2010$pctfemale <- waste_bycountry2010$pop_female/waste_bycountry2010$pop_total
+waste_bycountry2010$pctmale <- waste_bycountry2010$pop_male/waste_bycountry2010$pop_total
+
+typevspop$pctmale <- typevspop$pop_male/typevspop$pop_total
+typevspop$pctfemale <- typevspop$pop_female/typevspop$pop_total
+
+```
+
+```{r}
+# year span
 tibble(
   Missingness = "No Missingness",
-  `Year Range` = str_c(min(plastics_time$year), " to ", max(plastics_time$year)),
   `Number of Years` = 66,
-  `Plastics Range` = str_c(min(plastics_time$global_plastics_production_million_tonnes), " to ", max(plastics_time$global_plastics_production_million_tonnes)),
+  `Year Range` = str_c(min(plastics_time$year), " to ", max(plastics_time$year)),
+  `Plastics Range` = str_c(min(plastics_time$global_plastics_production_million_tonnes), " to ", max(plastics_time$global_plastics_production_million_tonnes))
 ) %>% 
   datatable()
 ```
+
+```{r, echo=FALSE}
+#Run regressions. 
+
+totpop.lm <- lm(formula = plastic_waste_generation_tonnes_total ~ pop_total, data=waste_bycountry2010)
+gender.lm <- lm(formula = plastic_waste_generation_tonnes_total ~ pop_male + pop_female, data=waste_bycountry2010)
+density.lm <- lm(formula = plastic_waste_generation_tonnes_total ~ pop_density, data=waste_bycountry2010)
+summary(totpop.lm)
+summary(gender.lm)
+summary(density.lm)
+```
+
+```{r}
+#Export final .csv files. 
+write.csv(typevspop, "year_vs_population_plastic.csv")
+write.csv(waste_bycountry2010, "waste_vs_country_2010.csv")
+```
+
+```{r}
+#Lineplot of total plastics production over time.
+ggplot(plastics_time, aes(year, global_plastics_production_million_tonnes)) + 
+  geom_line() +
+  labs(title= "Plastic Production by Year", x= "Year", y=" Plastic Production (in tonnes)") +
+  scale_x_continuous(n.breaks=10)
+```
+
+![Image Caption: 2010 Worldmap by Plastic Production (population-standardized)](Images/worldmap 2010.png)
+
+![Image Caption: Time-Based Scatterplot of Population Density vs. Total Plastic Production.](Images/pop growth.png)
+
+![Image Caption: Ordered Bar Chart of Countries (with nonmissing data) colored by relative population density. ](Images/pop density vs. total plastic.png)
+
+I used the Global Plastics Production over Time and the 2010 Plastic Production by Country datasets  from Our World in Data in conjuction with 1950-2020 population breakdowns from the UN's data archive. I wanted to investigate the plastic waste:population ratio by country in 2010, as well as for the world at large from 1950 to the present I merged these datasets together and recreated a simple lineplot showing the exponential growth of world plastic production in the last few decades. I also regressed  few basic population indicators on plastic production. 
+Some interesting trends that I noticed:
+1. plastic waste production far outpaces population growth, particularly in recent years. 
+2. though total population showed a significant association with total plastic production in 2010 (which makes a lot of sense) it was surprising that the countries with the densest populations weren't necessarily the ones with the higest total plastic production 
+  for example: India has one of the world's biggest populations but was ranked lower than Germany, Spain, and Nigeria in Total Plastic Production in 2010. I'd like to use the UN population data (which breaks countries up by development status) to investigate this finding more. The final point I intend to convey with my part of the visualization is that plastic production has grown relatively independently of raw population growth, in the sense that it is not just the world's most populous countries contributing the most to global plastic production. 
 
 ## Micro and Macro Plastic Pollution in the Ocean
 
