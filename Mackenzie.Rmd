@@ -38,6 +38,11 @@ microp_ocean <- read_csv("data/microplastics-in-ocean.csv") %>%
 ```
 
 ![Image Caption: Cute Dog](Images/cute_dog.jpg)
+![Image Caption: Microplastics](Images/Microplastics.jpg)
+
+![Image Caption: Micro vs. Macro](Images/MACRO:MICRO.jpg)
+
+![Image Caption: Micro and Macro](Images/MICRO:MACRO_Entity.jpg)
 <br>
 
 ## Basic Information
@@ -65,8 +70,4 @@ tibble(
 )
 ```
 
-```{r}
-![Image Caption: Microplastics](Images/Microplastics.jpg)
-![Image Caption: Microplastics](Images/MACRO/MICRO.jpg)
-![Image Caption: Microplastics](Images/MICRO/MACRO_Entity.jpg)
-```
+
