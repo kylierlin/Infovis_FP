@@ -233,7 +233,7 @@ tibble(
 
 In comparing Micro and Macroplastics, we discovered that there are currently more Macroplastics polluting the ocean than Microplastics. Interestingly, if plastic emissions were to stop in 2020, the number of Macroplastics is projected to drop significantly to be less than the number of Microplastics by 2050.
 
-After generating the graphs above we reached several conclusions. Overall, for both Macro and Microplastics, the current rate of emissions is projected to lead to exponential growth in the amount of plastic pollution in the ocean. This growth is projected to curb that growth if emissions level to their 2020 levels by 2050, but the only real way to decrease the amount of ocean plastics is if emissions stop completely.
+After generating the graphs above we reached several conclusions. Overall, for both Macro and Microplastics, the current rate of emissions is projected to lead to exponential growth in the amount of plastic pollution in the ocean. This growth is projected to curb if emissions level to their 2020 levels by 2050, but the only real way to decrease the amount of ocean plastics is if emissions stop completely.
 
 ## Conclusion
 
