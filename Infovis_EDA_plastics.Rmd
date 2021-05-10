@@ -1,6 +1,6 @@
 ---
 title: "InfoVis Final Project Data Exploration • Plastic Pollution"
-author: "Kylie Lin, Sherry Xue, Annika Nerella, Nawar Alhaddad, Mackenzie Wood"
+author: "Kylie Lin, Sherry Xue, Anika Nerella, Nawar Alhaddad, Mackenzie Wood"
 output:
   pdf_document:
     toc: yes
@@ -53,15 +53,15 @@ sector_polymer %>%
 The data on polymer types is documented in 2015 and it shares the dataset with the plastic consumption by industrial sectors. It includes 2 variables: the entity (type of plastic: PET, HDPE, LDPE, PET etc.) and the amount of primary plastic production in million metric tonnes. Looking at only the data for polymers, the minimum primary plastic production is 6.80e+07 million tonnes (PP) and the maximum primary plastic production is 2.50e+07 million tonnes (PS). We plan on visualizing the polymer data with the every day products to provide users a more tangible understanding of the amount of plastic production by polymer types. The figures below are several ways that we've been exploring how to visualize the data through actual products.
 
 
-![Image Caption: PET visualization 1 with single use water bottle. This image illustrates one possible way to visualize the PET data. I got the number of plastic bottles by converting the data in the table to grams and then divided by the average weight of an 16oz plastic water bottle, which is 19 grams.](Images/PET.png){width=40%}
+![PET visualization 1 with single use water bottle. This image illustrates one possible way to visualize the PET data. I got the number of plastic bottles by converting the data in the table to grams and then divided by the average weight of an 16oz plastic water bottle, which is 19 grams.](Images/PET.png){width=40%}
 
-![Image Caption: PET visualization 2. This figure shows an alternative way of illustrating PET data. It shows plastic water bottle in bulk as a single unit and then quantified the bulk.](Images/PET_alt.png){width=40%}
+![PET visualization 2. This figure shows an alternative way of illustrating PET data. It shows plastic water bottle in bulk as a single unit and then quantified the bulk.](Images/PET_alt.png){width=40%}
 
-![Image Caption: PP visualization with reusable plastic containers. This figure explores visualizing PP polymer data in reusable containers.](Images/PP.png){width=40%}
+![PP visualization with reusable plastic containers. This figure explores visualizing PP polymer data in reusable containers.](Images/PP.png){width=40%}
 
-![Image Caption: HDPE visualization with milk jar.](Images/HDPE.png){width=40%}
+![HDPE visualization with milk jar.](Images/HDPE.png){width=40%}
 
-![Image Caption: LDPE visualization with plastic trash bags.](Images/LDPE.png){width=40%}
+![LDPE visualization with plastic trash bags.](Images/LDPE.png){width=40%}
 
 *Note:* the visualization didn’t take into account of the complexity of the production process as data on the exact number of plastic polymer used in plastic product production process isn’t publicly available. Therefore, the visualization a rough estimate of the translation using the weight of plastic product (ex. Single- use plastic water bottle etc.) but didn’t take into account for the other materials (ex. Oil and water) used in production. 
 
@@ -86,7 +86,8 @@ tibble(
 
 The data from 2015 on plastic production by industrial sector gave some indication of which industries are the biggest producers of plastic. The data includes 2 variables:  entity (industry/sector: packaging, textiles, transportation, building & construction, etc...) and the amount of plastic produced in million  tonnes. This data was in the same table as the polymer types data but the desired variables were separated and an initial exploratory visualization using a bubble chart was preformed. As expected, packaging was the biggest industrial producer with 146 million tonnes. The smallest producer was the industrial machinery sector with 3 million tonnes of plastic. 
 
-![Image Caption: Plastic Production by Sector](Images/Plastic Production by Sector Exploration.png){width=50%}
+![Plastic Production by Sector](Images/Plastic Production by Sector Exploration.png){width=50%}
+
 Although this gives some idea of where plastic is coming from, it could be useful to couple this information with the polymer types data and try a stacked bar plot.
 
 ## Production Over Time
@@ -171,9 +172,7 @@ ggplot(plastics_time, aes(year, global_plastics_production_million_tonnes)) +
 
 ![Ordered Bar Chart of Countries (with nonmissing data) colored by relative population density. ](Images/pop density vs. total plastic.png){width=40%}
 
-I used the Global Plastics Production over Time and the 2010 Plastic Production by Country datasets from Our World in Data in conjunction with 1950-2020 population breakdowns from the UN's data archive. I wanted to investigate the plastic waste:population ratio by country in 2010, as well as for the world at large from 1950 to the present I merged these datasets together and recreated a simple lineplot showing the exponential growth of world plastic production in the last few decades. I also regressed few basic population indicators on plastic production. 
-
-Interesting trends:
+I used the Global Plastics Production over Time and the 2010 Plastic Production by Country datasets from Our World in Data in conjunction with 1950-2020 population breakdowns from the UN's data archive. I wanted to investigate the plastic waste:population ratio by country in 2010, as well as for the world at large from 1950 to the present I merged these datasets together and recreated a simple lineplot showing the exponential growth of world plastic production in the last few decades. I also regressed few basic population indicators on plastic production. **Interesting trends:**
 
 * plastic waste production far outpaces population growth, particularly in recent years. 
 * though total population showed a significant association with total plastic production in 2010 (which makes a lot of sense) it was surprising that the countries with the densest populations weren't necessarily the ones with the highest total plastic production. For example: India has one of the world's biggest populations but was ranked lower than Germany, Spain, and Nigeria in Total Plastic Production in 2010. I'd like to use the UN population data (which breaks countries up by development status) to investigate this finding more. The final point I intend to convey with my part of the visualization is that plastic production has grown relatively independently of raw population growth, in the sense that it is not just the world's most populous countries contributing the most to global plastic production. 
@@ -195,7 +194,7 @@ tibble(
   datatable()
 ```
 
-```{r, echo=F, fig.height=4, fig.width=5}
+```{r, echo=F, fig.height=3.5, fig.width=4.5}
 ggplot(macrop_ocean, aes(year,
                          accumulated_ocean_plastic_macroplastics_0_5cm,
                          color = entity)) + 
@@ -224,13 +223,13 @@ tibble(
 
 ```
 
-![Image Caption: Microplastics](Images/Microplastics.jpg){width=50%}
+![Microplastics](Images/Microplastics.jpg){width=50%}
 
 ### Macro and Microplastics Comparisons
 
-![Image Caption: Micro vs. Macro](Images/MACRO:MICRO.jpg){width=50%}
+![Micro vs. Macro](Images/MACRO:MICRO.jpg){width=50%}
 
-![Image Caption: Micro and Macro](Images/MICRO:MACRO_Entity.jpg){width=50%}
+![Micro and Macro](Images/MICRO:MACRO_Entity.jpg){width=50%}
 
 In comparing Micro and Macroplastics, we discovered that there are currently more Macroplastics polluting the ocean than Microplastics. Interestingly, if plastic emissions were to stop in 2020, the number of Macroplastics is projected to drop significantly to be less than the number of Microplastics by 2050.
 
