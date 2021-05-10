@@ -65,4 +65,8 @@ tibble(
 )
 ```
 
-
+```{r}
+![Image Caption: Microplastics](Images/Microplastics.jpg)
+![Image Caption: Microplastics](Images/MACRO/MICRO.jpg)
+![Image Caption: Microplastics](Images/MICRO/MACRO_Entity.jpg)
+```
