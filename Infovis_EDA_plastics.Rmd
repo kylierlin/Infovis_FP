@@ -162,11 +162,11 @@ ggplot(plastics_time, aes(year, global_plastics_production_million_tonnes)) +
   scale_x_continuous(n.breaks=10)
 ```
 
-![Image Caption: 2010 Worldmap by Plastic Production (population-standardized)](Images/worldmap 2010.png){width=40%}
+![2010 Worldmap by Plastic Production (population-standardized)](Images/worldmap 2010.png){width=40%}
 
-![Image Caption: Time-Based Scatterplot of Population Density vs. Total Plastic Production.](Images/pop growth.png){width=40%}
+![Time-Based Scatterplot of Population Density vs. Total Plastic Production.](Images/pop growth.png){width=40%}
 
-![Image Caption: Ordered Bar Chart of Countries (with nonmissing data) colored by relative population density. ](Images/pop density vs. total plastic.png){width=40%}
+![Ordered Bar Chart of Countries (with nonmissing data) colored by relative population density. ](Images/pop density vs. total plastic.png){width=40%}
 
 I used the Global Plastics Production over Time and the 2010 Plastic Production by Country datasets from Our World in Data in conjunction with 1950-2020 population breakdowns from the UN's data archive. I wanted to investigate the plastic waste:population ratio by country in 2010, as well as for the world at large from 1950 to the present I merged these datasets together and recreated a simple lineplot showing the exponential growth of world plastic production in the last few decades. I also regressed few basic population indicators on plastic production. 
 
