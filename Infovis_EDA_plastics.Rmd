@@ -245,8 +245,10 @@ Notable features we have the option to visualize are as follows:
 * Countries with the densest populations weren't necessarily the ones with the highest total plastic production.
 * Micro and Macroplastic levels in the ocean are growing at an exponential rate, and will continue to do so if pollution levels both remain at their current level and continue to grow as projected.
 
-## Link to Github Repo
-Proof that we did in fact write the code to present this data :-) Although many of the graphs are simply images dropped in from Tableau.
+## Link to Github Repo (Data Files)
+Proof that we did in fact write the code to present this data :-) Although many of the graphs are simply images dropped in from Tableau. All of our data has been downloaded from various downloads at this [Our World in Data](https://ourworldindata.org/plastic-pollution){target="_blank"} Page as well as some external sources as described above.
+
+Go to the "data" folder in the below Github Repository to view the .csv files.
 
 [https://github.com/kylierlin/Infovis_FP](https://github.com/kylierlin/Infovis_FP){target="_blank"}
 
