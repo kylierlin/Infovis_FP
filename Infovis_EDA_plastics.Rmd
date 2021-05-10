@@ -48,6 +48,20 @@ sector_polymer %>%
   datatable()
 ```
 
+The data on polymer types is documented in 2015 and it shares the dataset with the plastic consumption by industrial sectors. It includes 2 variables: the entity (type of plastic: PET, HDPE, LDPE, PET etc.) and the amount of primary plastic production in million metric tonnes. Looking at only the data for polymers, the minimum primary plastic production is 6.80e+07 million tonnes (PP) and the maximum primary plastic production is 2.50e+07 million tonnes (PS). We plan on visualizing the polymer data with the every day products to provide users a more tangible understanding of the amount of plastic production by polymer types. The figures below are several ways that we've been exploring how to visualize the data through actual products.
+
+
+![Image Caption: PET visualization 1 with single use water bottle. This image illustrates one possible way to visualize the PET data. I got the number of plastic bottles by converting the data in the table to grams and then divided by the average weight of an 16oz plastic water bottle, which is 19 grams.](Images/PET.png)
+![Image Caption: PET visualization 2. This figure shows an alternative way of illustrating PET data. It shows plastic water bottle in bulk as a single unit and then quantified the bulk.](Images/PET_alt.png)
+
+![Image Caption: PP visualization with reusable plastic containers. This figure explores visualizing PP polymer data in reusable containers.](Images/PP.png)
+
+![Image Caption: HDPE visualization with milk jar.](Images/HDPE.png)
+
+![Image Caption: LDPE visualization with plastic trash bags.](Images/LDPE.png)
+*Note: the visualization didn’t take into account of the complexity of the production process as data on the exact number of plastic polymer used in plastic product production process isn’t publicly available. Therefore, the visualization a rough estimate of the translation using the weight of plastic product (ex. Single- use plastic water bottle etc.) but didn’t take into account for the other materials (ex. Oil and water) used in production. 
+
+For next steps, we plan to explore ways to visualize the data even more using metaphors such as the distance from earth to moon or the size of a continent to describe the numbers associated with each plastic product. 
 
 ```{r, echo=T, results='hide'}
 skim_without_charts(sector_polymer)
