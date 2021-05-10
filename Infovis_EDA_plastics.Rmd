@@ -240,6 +240,7 @@ After generating the graphs above we reached several conclusions. Overall, for b
 Notable features we have the option to visualize are as follows:
 
 * Translations between polymer types to more commonly understood metrics for consumers. Polymer type waste of all kinds has increased over time.
+* Packaging is the biggest industrial producer with 146 million tonnes. The smallest producer was the industrial machinery sector with 3 million tonnes of plastic.
 * Plastic waste production far outpaces population growth, particularly in recent years. 
 * Countries with the densest populations weren't necessarily the ones with the highest total plastic production.
 * Micro and Macroplastic levels in the ocean are growing at an exponential rate, and will continue to do so if pollution levels both remain at their current level and continue to grow as projected.
